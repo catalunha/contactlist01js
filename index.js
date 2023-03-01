@@ -1,21 +1,23 @@
 const Parse = require('parse/node');
-Parse.serverURL = 'https://contactlist01js.b4a.io';
-Parse.initialize('6YFc3s30WZq7Jzo0rKG89BTO0o0BvMw1ThJrwwW4','VhFxMwCNWjx0wctNxXYQoG8BsP3iSJg8TU6Addc0');
+Parse.serverURL = 'https://learningaboutb4a.b4a.io';
+Parse.initialize('x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9','BzNK4dwZ1UvFcgsyQum6jktmOFUrxr4EcgaS4Mp7');
 
 const main = async ()=>{
-  const query = new Parse.Query('Contact');
+  const query = new Parse.Query('Genre');
   // query.notEqualTo('isMan',true);
   // query.equalTo('birthDate',null);
-  query.exists('birthDate');
+  query.exists('typeDateTime');
   const subscribe = await query.subscribe();
 
   let contacts = {};
   const printContacts = ()=>{
-    console.log();
+    console.log('printContacts+++');
     Object.keys(contacts).forEach(id=>{
       console.log(contacts[id].toJSON());
+      console.log(contacts[id].get('typeDateTime'))
+      console.log(typeof contacts[id].get('typeDateTime'))
     });
-    console.log();
+    console.log('printContacts---');
   };
 
   subscribe.on('open', async ()=>{
